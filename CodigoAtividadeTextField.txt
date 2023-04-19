@@ -1,0 +1,74 @@
+package com.example.projetotf
+import android.os.Bundle
+import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.dp
+import com.example.projetotf.ui.theme.projetotfTheme
+
+ 
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            projetotfTheme {
+                Surface(color = MaterialTheme.colors.background) {
+                    Tela()
+                }
+            }
+        }
+    }
+}
+
+ 
+
+@Composable
+fun Tela() {
+    var textState by remember { mutableStateOf(TextFieldValue("")) }
+
+ 
+
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        backgroundColor = Color.Yellow
+    ) { paddingValues ->
+        Log.i("paddingValues", "$paddingValues")
+        TextField(
+            value = textState,
+            onValueChange = { newValue ->
+                textState = newValue
+            },
+            placeholder = {
+                Text(
+                    text = "LEANDRO HASSUM MALUCO",
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                )
+            },
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+        )
+    }
+}
+
+ 
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    projetotfTheme {
+        Tela()
+    }
+}
